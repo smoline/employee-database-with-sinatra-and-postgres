@@ -16,12 +16,30 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+      .s-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .s-list-item {
+        margin: 0;
+        padding: 10px 0;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="/">TIY Database</a>
       </div>
 
@@ -47,9 +65,10 @@
 					</tr>
 					<tr>
 						<td rowspan="5">
-              <ul type="list-group">
-                <li type="list-group-item"><a href="/employee?name=<%= person["name"] %>"><%= person["name"] %></a></li>
-                <li type="list-group-item"><button type="submit" class="btn btn-default"><a href="/edit_employee?id=<%= person["id"] %>">Edit</a></button></li>
+              <ul class="s-list">
+                <li class="s-list-item"><a href="/employee?name=<%= person["name"] %>"><%= person["name"] %></a></li>
+                <li class="s-list-item"><button type="submit" class="btn btn-default"><a href="/edit_employee?id=<%= person["id"] %>">Edit</a></button></li>
+                <li class="s-list-item"><button type="submit" class="btn btn-default"><a href="/delete_employee?id=<%= person["id"] %>">Delete</a></button></li>
               </ul>
             </td>
 						<td><%= person["address"] %></td>

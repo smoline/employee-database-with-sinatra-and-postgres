@@ -85,3 +85,13 @@ get '/update_employee' do
 
   redirect to("/employees")
 end
+
+get '/delete_employee' do
+  id = params["id"]
+
+  database = PG.connect(dbname: "tiy-database")
+
+  @people = database.exec("DELETE FROM employees WHERE id = $1", [id])
+
+  redirect to("/employees")
+end

@@ -46,7 +46,7 @@
 								<li><a href="/search_employee">Delete an Employee</a></li>
 							</ul>
 						</li>
-            <li class="dropdown">
+            <li class="active dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/courses">Course Report</a></li>
@@ -73,35 +73,21 @@
     <div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					Employees
+					Courses
 				</div>
 				<table class="table">
-					<% @people.each do |person| %>
 					<tr>
-						<th class="info">Name</th>
-						<th class="info">Address</th>
-						<th class="info">Phone</th>
+						<th class="info">Course Name</th>
+						<th class="info">Subject</th>
+						<th class="info">Cost</th>
+            <th class="info">Length</th>
 					</tr>
+          <% @all_courses.each do |course| %>
 					<tr>
-						<td rowspan="5"><a href="/employee?name=<%= person["name"] %>"><%= person["name"] %></a></td>
-						<td><%= person["address"] %></td>
-						<td><%= person["phone"] %></td>
-					</tr>
-					<tr>
-						<th class="info">Position</th>
-						<th class="info">Salary</th>
-					</tr>
-					<tr>
-						<td><%= person["position"] %></td>
-						<td>$<%= person["salary"] %></td>
-					</tr>
-					<tr>
-						<th class="info">Slack Account</th>
-						<th class="info">Github Account</th>
-					</tr>
-					<tr>
-						<td><%= person["slack"] %></td>
-						<td><%= person["github"] %></td>
+						<td><a href="/course?course_name=<%= course["course_name"] %>"><%= course["course_name"] %></a></td>
+						<td><%= course["course_subject"] %></td>
+						<td><%= course["course_cost"] %></td>
+            <td><%= course["course_length"] %></td>
 					</tr>
 					<% end %>
 				</table>

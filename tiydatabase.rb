@@ -38,16 +38,14 @@ get '/create_employee' do
 
   database = PG.connect(dbname: "tiy-database")
 
-  # insert into TABLE(list-of-columns) VALUES(list-of-values)
-
   @people = database.exec("INSERT INTO employees(name, phone, address, position, salary, github, slack) VALUES($1, $2, $3, $4, $5, $6, $7)", [name, phone, address, position, salary, github, slack])
 
-  redirect to("/")
+  redirect to("/employees")
 end
 
-# get '/search_employee' do
-#   erb :search_employee
-# end
+get '/search_employee' do
+  erb :search_employee
+end
 
 get '/search_results' do
   which_employee = params["search_param"]
@@ -94,4 +92,85 @@ get '/delete_employee' do
   @people = database.exec("DELETE FROM employees WHERE id = $1", [id])
 
   redirect to("/employees")
+end
+
+get '/courses' do
+  database = PG.connect(dbname: "tiy-database")
+  @all_courses = database.exec("select * from courses")
+
+  erb :courses
+end
+
+get '/course' do
+  which_course = params["course_name"]
+
+  database = PG.connect(dbname: "tiy-database")
+  @all_courses = database.exec("SELECT * FROM courses WHERE course_name = $1", [which_course])
+
+  erb :course
+end
+
+get '/new_course' do
+  erb :new_course
+end
+
+get '/create_course' do
+  course_name = params["course_name"]
+  course_subject = params["course_subject"]
+  course_cost = params["course_cost"]
+  course_length = params["course_length"]
+
+  database = PG.connect(dbname: "tiy-database")
+
+  @all_courses = database.exec("INSERT INTO courses(course_name, course_subject, course_cost, course_length) VALUES($1, $2, $3, $4)", [course_name, course_subject, course_cost, course_length])
+
+  redirect to("/courses")
+end
+
+get '/search_course' do
+  erb :search_course
+end
+
+get '/search_course_results' do
+  which_course = params["search_param"]
+
+  database = PG.connect(dbname: "tiy-database")
+  @all_courses = database.exec("SELECT * FROM courses WHERE course_name = $1 OR course_name LIKE $1", ["%#{which_course}%"])
+
+  erb :course
+end
+
+get '/edit_course' do
+  id = params["id"]
+
+  database = PG.connect(dbname: "tiy-database")
+  courses = database.exec("SELECT * FROM courses WHERE id = $1", [id])
+
+  @course = courses.first
+
+  erb :edit_course
+end
+
+get '/update_course' do
+  course_name = params["course_name"]
+  course_subject = params["course_subject"]
+  course_cost = params["course_cost"]
+  course_length = params["course_length"]
+  id = params["id"]
+
+  database = PG.connect(dbname: "tiy-database")
+
+  @all_courses = database.exec("UPDATE courses SET course_name = $1, course_subject = $2, course_cost = $3, course_length = $4 WHERE id = $5", [course_name, course_subject, course_cost, course_length, id])
+
+  redirect to("/courses")
+end
+
+get '/delete_course' do
+  id = params["id"]
+
+  database = PG.connect(dbname: "tiy-database")
+
+  @all_courses = database.exec("DELETE FROM courses WHERE id = $1", [id])
+
+  redirect to("/courses")
 end

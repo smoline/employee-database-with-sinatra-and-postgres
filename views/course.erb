@@ -46,28 +46,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<!-- <li class="active"><a href="/employees">Employees <span class="sr-only">(current)</span></a></li>
-            <li><a href="/new_employee">Add an Employee</a></li> -->
-						<li class="active dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employees<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/employees">Employee Report</a></li>
-								<li><a href="/new_employee">Add an Employee</a></li>
-								<li><a href="/search_employee">Search for Employee</a></li>
-								<li><a href="/search_employee">Update Employee</a></li>
-								<li><a href="/search_employee">Delete an Employee</a></li>
-							</ul>
-						</li>
-            <li class="active dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/courses">Course Report</a></li>
-								<li><a href="/new_course">Add a Course</a></li>
-								<li><a href="/search_course">Search for a Course</a></li>
-								<li><a href="/search_course">Update a Course</a></li>
-								<li><a href="/search_course">Delete a Course</a></li>
-							</ul>
-						</li>
+						<li class="active"><a href="/employees">Employees <span class="sr-only">(current)</span></a></li>
+            <li><a href="/courses">Courses</a></li>
 					</ul>
 				<form action="/search_results" method="get" class="navbar-form navbar-right form-inline">
 						<div class="form-group">
@@ -98,7 +78,7 @@
 					<tr>
 						<td>
               <ul class="s-list">
-                <li class="s-list-item"><a href="/course?course_name=<%= course["course_name"] %>"><%= course["course_name"] %></a></li>
+                <li class="s-list-item"><%= course["course_name"] %></li>
                 <li class="s-list-item"><button type="submit" class="btn btn-default"><a href="/edit_course?id=<%= course["id"] %>">Edit</a></button><button type="submit" class="btn btn-default button-right"><a href="/delete_course?id=<%= course["id"] %>">Delete</a></button></li>
               </ul>
             </td>

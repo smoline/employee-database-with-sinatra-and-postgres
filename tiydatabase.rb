@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'pg'
+require 'awesome_print'
 
 require 'sinatra/reloader' if development?
 
@@ -10,7 +11,7 @@ end
 get '/employees' do
   database = PG.connect(dbname: "tiy-database")
   @people = database.exec("select * from employees")
-
+  ap @people
   erb :employees
 end
 
@@ -51,6 +52,7 @@ get '/search_results' do
   which_employee = params["search_param"]
 
   database = PG.connect(dbname: "tiy-database")
+
   @people = database.exec("SELECT * FROM employees WHERE name = $1 OR github = $1 OR slack = $1 OR name LIKE $1", ["%#{which_employee}%"])
 
   erb :employee

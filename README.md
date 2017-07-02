@@ -1,4 +1,4 @@
-# TIY Database with Sinatra and Postgresql
+# Employee Database with Sinatra and Postgresql
 
 * To start this program you must have pstgresql and the sinatra gem installed    
   * createdb tiy-database
